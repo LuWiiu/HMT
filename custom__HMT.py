@@ -18,8 +18,6 @@ class dummyGUIfuncs():
     def makeListBox(): """holder, contents, x = 0, y = 0, others = []"""
     def makeHelperInfo(): 
         """
-        Not acttully complete yet :)(
-
         target, info
         
         TK  | target: _TKINTER.Widget
@@ -309,7 +307,6 @@ class gui(dummyGUIfuncs):
         target.bind("<Enter>", lambda a: s._CTKmakeText(target.master, info, 20, target.master.winfo_height() - 30, ["helperInfo"]))
         target.bind("<Leave>", lambda a: s.ANYhelperText[target.master].destroy())
     def _DPGmakeHelperInfo(s, target: int, info: str):
-        # After two hours I have finnaly done!
         parent = _DPG.get_item_parent(target)
         s.ANYhelperText[target] = _DPG.add_text(info, parent = parent, show = False, pos = [20, _DPG.get_item_height(parent) - 30])
         def SHOWorHIDEitem(t):
