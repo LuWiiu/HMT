@@ -287,7 +287,6 @@ class gui(dummyGUIfuncs):
         if "helperInfo" in others: s.ANYhelperText[holder] = _text
         return _text
     def _DPGmakeText(s, holder, text = "", x = 0, y = 0, others = []):
-        print(f"chudcuhjn bhvh: {text}")
         if "offsetY" in others: y += 20
         _text = _DPG.add_text(text, parent = holder, pos = [x, y+20])
         if "helperInfo" in others: s.ANYhelperText = _text
