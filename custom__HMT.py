@@ -20,6 +20,7 @@ class gui():
     guiType = None
     TKcboxvars = {}
     ANYhelperText = {}
+    customFrameInsert = {}
 
     def __init__(s, guiType, version, customFrameInsert: dict = {}):
 
@@ -27,7 +28,7 @@ class gui():
 
         customFrameInsert is an dict that lets you define your own functions;
         if you are brave enough to make your own equivlent to each function...
-        
+
         customFrameInsert:
             "makeMain": None,
             "startMain": None,
@@ -44,6 +45,7 @@ class gui():
             "makeText": None,
         """
 
+        s.customFrameInsert = customFrameInsert
         s.guiType = guiType
         if version != s.modernVersion: print(error.versionError.format(s.modernVersion))
         if not guiType or guiType == "tk": 
