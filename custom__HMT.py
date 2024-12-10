@@ -24,6 +24,10 @@ class gui():
     def __init__(s, guiType, version, customFrameInsert: dict = {}):
 
         """
+
+        customFrameInsert is an dict that lets you define your own functions;
+        if you are brave enough to make your own equivlent to each function...
+        
         customFrameInsert:
             "makeMain": None,
             "startMain": None,
