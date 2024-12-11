@@ -1,10 +1,5 @@
 import sys
-
-def depricatedFunc(func):
-    def wrapper(*args):
-        print(f"Warning function G.{func.__name__} is depricated | use G.frame.{func.__name__}")
-        return func(*args)
-    return wrapper
+from BetterPY.wrappers import expectFunc, depricatedFunc
 
 class error():
     versionError = "The version of HMT you are is not the most recent! | verion: {}"
@@ -127,40 +122,47 @@ class gTK:
         GUIcontext.guiSelf.TK.mainloop()
     def endMain():
         GUIcontext.guiSelf.TK.destroy()
+    @expectFunc
     def makeWin(titel = "", geometry = [200, 200]):
             win = _TKINTER.Toplevel(GUIcontext.guiSelf.TK)
             win.title(titel)
             win.geometry(f"{geometry[0]}x{geometry[1]}")
-            return win
+            return [win, _TKINTER.Toplevel]
+    @expectFunc
     def makeButton(holder, titel = "", x = 0, y = 0, command = lambda: ..., *useless):
             button = _TKINTER.Button(holder, text = titel, command = command)
             button.place(x = x, y = y)
-            return button
+            return [button, _TKINTER.Button]
+    @expectFunc
     def makeEntry(holder, x = 0, y = 0, *useless):
             entry = _TKINTER.Entry(holder)
             entry.place(x = x, y = y)
-            return entry
+            return [entry, _TKINTER.Entry]
+    @expectFunc
     def getEntryText(target):
-        return target.get()
+        return [target.get(), str]
+    @expectFunc
     def makeCheckBox(holder, x = 0, y = 0, label = "", command = lambda: ..., *useless):
         var = _TKINTER.IntVar()
-        entry = _TKINTER.Checkbutton(holder, text = label, command = command, variable = var)
-        entry.place(x = x, y = y)
-        GUIcontext.guiSelf.TKcboxvars[entry] = var
-        return entry
+        checkBox = _TKINTER.Checkbutton(holder, text = label, command = command, variable = var)
+        checkBox.place(x = x, y = y)
+        GUIcontext.guiSelf.TKcboxvars[checkBox] = var
+        return [checkBox, _TKINTER.Checkbutton]
     def getCheckBoxState(target):
         return bool(GUIcontext.guiSelf.TKcboxvars[target].get())
+    @expectFunc
     def makeListBox(holder, contents, x = 0, y = 0, *useless):
         _list = _TTK.Combobox(holder, values = contents)
         _list.place(x = x, y = y)
-        return _list
+        return [_list, _TTK.Combobox]
     def getListBoxItem(target):
         return target.selection_get()
+    @expectFunc
     def makeText(holder, text = "", x = 0, y = 0, others = []):
         _text = _TKINTER.Label(holder, text = text)
         _text.place(x = x, y = y)
         if "helperInfo" in others: GUIcontext.guiSelf.ANYhelperText[holder] = _text
-        return _text
+        return [_text, _TKINTER.Label]
     def makeHelperInfo(target, info):
         target.bind("<Enter>", lambda a: GUIcontext.guiSelf.frame.makeText(target.master, info, 20, target.master.winfo_height() - 30, ["helperInfo"]))
         target.bind("<Leave>", lambda a: GUIcontext.guiSelf.ANYhelperText[target.master].destroy())
@@ -180,41 +182,48 @@ class gCTK:
         GUIcontext.guiSelf.CTK.mainloop()
     def endMain():
         GUIcontext.guiSelf.CTK.destroy()
+    @expectFunc
     def makeWin(titel = "", geometry = [200, 200]):
         win = _CTK.CTkToplevel(GUIcontext.guiSelf.CTK)
         win.title(titel)
         win.geometry(f"{geometry[0]}x{geometry[1]}")
-        return win
+        return [win, _CTK.CTkToplevel]
+    @expectFunc
     def makeButton(holder, titel = "", x = 0, y = 0, command = lambda: ..., others = []):
         if "offsetY" in others: y += 15
         button = _CTK.CTkButton(holder, text = titel, command = command)
         button.place(x = x, y = y)
-        return button
+        return [button, _CTK.CTkButton]
+    @expectFunc
     def makeEntry(holder, x = 0, y = 0, *useless):
         entry = _CTK.CTkEntry(holder)
         entry.place(x = x, y = y)
-        return entry
+        return [entry, _CTK.CTkEntry]
+    @expectFunc
     def getEntryText(target):
-        return target.get()
+        return [target.get(), str]
+    @expectFunc
     def makeCheckBox(holder, x = 0, y = 0, label = "", command = lambda: ..., *useless):
         entry = _CTK.CTkCheckBox(holder, text = label ,command = command)
         entry.place(x = x, y = y + 10)
-        return entry
+        return [entry, _CTK.CTkCheckBox]
     def getCheckBoxState(target):
         return bool(target.get())
+    @expectFunc
     def makeListBox(holder, contents, x = 0, y = 0, others = []):
         if "offsetY" in others: y += 20
         for i in range(len(contents)): contents[i] = str(contents[i])
         _list = _CTK.CTkOptionMenu(holder, values = contents)
         _list.place(x = x, y = y)
-        return _list
+        return [_list, _CTK.CTkOptionMenu]
     def getListBoxItem(target):
         return target.get()
+    @expectFunc
     def makeText(holder, text = "", x = 0, y = 0, others = []):
         _text = _CTK.CTkLabel(holder, text = text)
         _text.place(x = x, y = y)
         if "helperInfo" in others: GUIcontext.guiSelf.ANYhelperText[holder] = _text
-        return _text
+        return [_text, _CTK.CTkLabel]
     def makeHelperInfo(target, info):
         target.bind("<Enter>", lambda a: GUIcontext.guiSelf.frame.makeText(target.master, info, 20, target.master.winfo_height() - 30, ["helperInfo"]))
         target.bind("<Leave>", lambda a: GUIcontext.guiSelf.ANYhelperText[target.master].destroy())
