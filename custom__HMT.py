@@ -191,6 +191,7 @@ class gCTK:
     @expectFunc
     def makeButton(holder, titel = "", x = 0, y = 0, command = lambda: ..., others = []):
         if "offsetY" in others: y += 15
+        if "offsetX" in others: x += 120
         button = _CTK.CTkButton(holder, text = titel, command = command)
         button.place(x = x, y = y)
         return [button, _CTK.CTkButton]
