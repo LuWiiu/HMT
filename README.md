@@ -15,6 +15,8 @@ A easy to use GUI tool that lets you switch the entire gui framework you use wit
 
 ---
 
-This project relies on another of mine: BteerPY go to https://github.com/LuWiiu/BetterPY/tree/Update-2/BetterPY for (at the time of writing 12/11/24 US, 11/12/24 EU) this comment may get updated it I remeber too.
+This project relies on another of mine: BetterPY go to https://github.com/LuWiiu/BetterPY for the latist version (at the time of writing 12/14/24 US, 14/12/24 EU) this comment may get updated it I remeber too.
+
+---
 
 ... And no I dont remeber what HMT meant, I made it at some point but idr :/
